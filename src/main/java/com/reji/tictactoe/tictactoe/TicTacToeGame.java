@@ -24,6 +24,7 @@ public class TicTacToeGame implements ActionListener {
         GAME_FIELD.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         GAME_FIELD.setSize(800,800);
         GAME_FIELD.getContentPane().setBackground(new Color(153,255,153));
+        GAME_FIELD.setLayout(new BorderLayout());
 
     }
     @Override

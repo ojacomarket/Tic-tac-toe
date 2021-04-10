@@ -39,8 +39,8 @@ public class TicTacToeGame implements ActionListener {
         TEXT_FIELD.setText("Tic Tac Toe");
         TEXT_FIELD.setOpaque(true);
 
-
-
+        // Init title component of Game Field
+        TITLE_PANEL.setLayout(new BorderLayout());
     }
     @Override
     public void actionPerformed(ActionEvent actionEvent) {

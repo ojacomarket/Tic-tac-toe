@@ -30,6 +30,7 @@ public class TicTacToeGame implements ActionListener {
 
         // Init Text Field within Game Field window
         TEXT_FIELD.setBackground(new Color (51,255,51));
+        TEXT_FIELD.setForeground(new Color(47,49,63));
 
 
 

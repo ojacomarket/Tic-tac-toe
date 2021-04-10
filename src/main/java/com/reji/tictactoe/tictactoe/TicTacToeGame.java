@@ -71,13 +71,17 @@ public class TicTacToeGame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        for (int buttonNr = 0; buttonNr < BUTTONS_ARRAY.length; buttonNr++) {
-            if (actionEvent.getSource() == BUTTONS_ARRAY[buttonNr]) {
-                if(isPlayerOneTurn) {
-                    if(BUTTONS_ARRAY[buttonNr].getText().equals("")) {
-
+        for (JButton button : BUTTONS_ARRAY) {
+            if (actionEvent.getSource() == button) {
+                if (isPlayerOneTurn) {
+                    if (button.getText().equals("")) {
+                        button.setForeground(new Color(255, 0, 0));
+                        button.setText("X");
+                        isPlayerOneTurn = false;
+                        TEXT_FIELD.setText("O turn");
                     }
                 }
+
 
             }
         }

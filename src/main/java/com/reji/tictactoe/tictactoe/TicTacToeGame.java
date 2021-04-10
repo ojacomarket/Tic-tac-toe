@@ -21,6 +21,7 @@ public class TicTacToeGame implements ActionListener {
     private final Random generator = new Random();
     private boolean isPlayerOneTurn;
     private final Consumer<JButton> initButtons = BUTTONS_PANEL::add;
+    private final Dimension monitor = Toolkit.getDefaultToolkit().getScreenSize();
 
     public TicTacToeGame() {
         initGameField();
@@ -34,6 +35,7 @@ public class TicTacToeGame implements ActionListener {
         GAME_FIELD.setLayout(new BorderLayout());
         GAME_FIELD.setResizable(false);
         GAME_FIELD.setVisible(true);
+        GAME_FIELD.setLocation(monitor.width/2-GAME_FIELD.getSize().width/2, monitor.height/2-GAME_FIELD.getSize().height/2);
 
         // Init Text Field within Game Field window
         TEXT_FIELD.setBackground(new Color(51, 255, 51));
@@ -80,7 +82,7 @@ public class TicTacToeGame implements ActionListener {
                         button.setText("O");
                         isPlayerOneTurn = true;
                         TEXT_FIELD.setText("X turn");
-                        //winningCombos();
+                        winningCombos();
                     }
                 }
             }
@@ -113,13 +115,11 @@ public class TicTacToeGame implements ActionListener {
     }
 
     public void winningCombos() {
-        int[] argss = XwinningCombos.xwins(BUTTONS_ARRAY);
-        if (!Arrays.equals(argss, new int[]{0, 0, 0})) {
-            winsOnX(argss);
+        if (!Arrays.equals(XwinningCombos.xwins(BUTTONS_ARRAY), new int[]{0, 0, 0})) {
+            winsOnX(XwinningCombos.xwins(BUTTONS_ARRAY));
         } else {
-            int[] argss2 = YwinningCombos.xwins(BUTTONS_ARRAY);
-            if (!Arrays.equals(argss2, new int[]{0, 0, 0})) {
-                winsOnO(argss2);
+            if (!Arrays.equals(YwinningCombos.ywins(BUTTONS_ARRAY), new int[]{0, 0, 0})) {
+                winsOnO(YwinningCombos.ywins(BUTTONS_ARRAY));
             }
         }
     }
@@ -143,6 +143,6 @@ public class TicTacToeGame implements ActionListener {
         for (JButton button : BUTTONS_ARRAY) {
             button.setEnabled(false);
         }
-        TEXT_FIELD.setText("Y won!");
+        TEXT_FIELD.setText("O won!");
     }
 }

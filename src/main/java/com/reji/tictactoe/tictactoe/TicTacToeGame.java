@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static java.awt.BorderLayout.NORTH;
 import static java.awt.Font.BOLD;
 import static javax.swing.JLabel.CENTER;
 
@@ -46,8 +47,8 @@ public class TicTacToeGame implements ActionListener {
         // Add TEXT field to TITLE panel
         TITLE_PANEL.add(TEXT_FIELD);
 
-        // Add TITLE panel to GAME FIELD
-        GAME_FIELD.add(TITLE_PANEL);
+        // Add TITLE panel to GAME FIELD and stick to the top of view
+        GAME_FIELD.add(TITLE_PANEL, NORTH);
     }
     @Override
     public void actionPerformed(ActionEvent actionEvent) {

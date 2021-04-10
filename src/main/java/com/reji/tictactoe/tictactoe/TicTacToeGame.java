@@ -30,6 +30,7 @@ public class TicTacToeGame implements ActionListener {
         GAME_FIELD.setSize(400,400);
         GAME_FIELD.getContentPane().setBackground(new Color(153,255,153));
         GAME_FIELD.setLayout(new BorderLayout());
+        GAME_FIELD.setResizable(false);
         GAME_FIELD.setVisible(true);
 
         // Init Text Field within Game Field window

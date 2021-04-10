@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static java.awt.Font.BOLD;
+
 public class TicTacToeGame implements ActionListener {
     private final JFrame GAME_FIELD = new JFrame();
     private final JPanel GAME_PANEL = new JPanel();
@@ -31,6 +33,7 @@ public class TicTacToeGame implements ActionListener {
         // Init Text Field within Game Field window
         TEXT_FIELD.setBackground(new Color (51,255,51));
         TEXT_FIELD.setForeground(new Color(47,49,63));
+        TEXT_FIELD.setFont(new Font("Roboto", BOLD, 70));
 
 
 

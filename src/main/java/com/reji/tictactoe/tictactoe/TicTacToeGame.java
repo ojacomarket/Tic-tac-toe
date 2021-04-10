@@ -122,8 +122,13 @@ public class TicTacToeGame implements ActionListener {
         }
     }
     public void winningCombos () {
-
-        // X--X--X
+        int [] argss = XwinningCombos.xwins(BUTTONS_ARRAY);
+        if (!Arrays.equals(argss, new int[]{0, 0, 0})) {
+            winsOnX(argss);
+        }
+        else
+            return;
+        /*// X--X--X
         // *--*--*
         // *--*--*
         if (BUTTONS_ARRAY[0].getText().equals("X")
@@ -187,7 +192,7 @@ public class TicTacToeGame implements ActionListener {
                 && BUTTONS_ARRAY[7].getText().equals("X")
                 && BUTTONS_ARRAY[8].getText().equals("X")) {
             winsOnX(3,6,8);
-        }
+        }*/
 
         /////////////////////////////////////////////////////
 
@@ -257,10 +262,11 @@ public class TicTacToeGame implements ActionListener {
             winsOnO(3,6,8);
         }
     }
-    public void winsOnX (int button1, int button2, int button3) {
-        BUTTONS_ARRAY[button1].setBackground(Color.RED);
-        BUTTONS_ARRAY[button2].setBackground(Color.RED);
-        BUTTONS_ARRAY[button3].setBackground(Color.RED);
+    public void winsOnX (int[] ints) {
+        for (int i = 0; i < ints.length; i++) {
+            BUTTONS_ARRAY[ints[i]].setBackground(Color.GREEN);
+        }
+
         for (JButton button : BUTTONS_ARRAY) {
             button.setEnabled(false);
         }

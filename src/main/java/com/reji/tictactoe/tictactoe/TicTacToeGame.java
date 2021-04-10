@@ -71,7 +71,11 @@ public class TicTacToeGame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
+        for (int buttonNr = 0; buttonNr < BUTTONS_ARRAY.length; buttonNr++) {
+            if (actionEvent.getSource() == BUTTONS_ARRAY[buttonNr]) {
 
+            }
+        }
     }
 
     public void initButtons() {

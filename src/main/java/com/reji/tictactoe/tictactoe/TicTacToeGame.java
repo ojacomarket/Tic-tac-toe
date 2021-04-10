@@ -15,6 +15,10 @@ public class TicTacToeGame implements ActionListener {
     private final List<JButton>  BUTTONS_ITSELF = new ArrayList<>();
     private final Random generator = new Random();
     private boolean isPlayerOneTurn;
+
+    public TicTacToeGame () {
+
+    }
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
 

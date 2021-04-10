@@ -45,6 +45,9 @@ public class TicTacToeGame implements ActionListener {
 
         // Add TEXT field to TITLE panel
         TITLE_PANEL.add(TEXT_FIELD);
+
+        // Add TITLE panel to GAME FIELD
+        GAME_FIELD.add(TITLE_PANEL);
     }
     @Override
     public void actionPerformed(ActionEvent actionEvent) {

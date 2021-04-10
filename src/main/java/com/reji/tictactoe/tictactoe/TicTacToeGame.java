@@ -21,11 +21,17 @@ public class TicTacToeGame implements ActionListener {
 
     }
     private void initGameField () {
+        // Init Game Field main window
         GAME_FIELD.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         GAME_FIELD.setSize(800,800);
         GAME_FIELD.getContentPane().setBackground(new Color(153,255,153));
         GAME_FIELD.setLayout(new BorderLayout());
         GAME_FIELD.setVisible(true);
+
+        // Init Text Field within Game Field window
+        TEXT_FIELD.setBackground(new Color (51,255,51));
+
+
 
     }
     @Override

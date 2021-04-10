@@ -4,9 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
+import java.util.function.Consumer;
 
 import static java.awt.BorderLayout.NORTH;
 import static java.awt.Font.BOLD;
@@ -17,10 +16,9 @@ public class TicTacToeGame implements ActionListener {
     private final JPanel TITLE_PANEL = new JPanel();
     private final JPanel BUTTONS_PANEL = new JPanel();
     private final JLabel TEXT_FIELD = new JLabel();
-    private final List<JButton>  BUTTONS_ITSELF = new ArrayList<>();
+    private final JButton[] BUTTONS_ARRAY = new JButton[9];
     private final Random generator = new Random();
     private boolean isPlayerOneTurn;
-
     public TicTacToeGame () {
         initGameField();
     }
@@ -45,6 +43,19 @@ public class TicTacToeGame implements ActionListener {
         TITLE_PANEL.setLayout(new BorderLayout());
         TITLE_PANEL.setBounds(0,0,GAME_FIELD.getWidth(),100);
 
+        // Init button panel (container for buttons)
+        BUTTONS_PANEL.setLayout(new GridLayout(3,3));
+        BUTTONS_PANEL.setBackground(new Color(255,255,255));
+
+        for(int buttonNr = 0; buttonNr < 9; buttonNr++) {
+            BUTTONS_ARRAY[buttonNr] = new JButton();
+            BUTTONS_PANEL.add(BUTTONS_ARRAY[buttonNr]);
+            BUTTONS_ARRAY[buttonNr].setFont(new Font("MV Boli", BOLD, 120));
+            BUTTONS_ARRAY[buttonNr].setFocusable(false);
+            BUTTONS_ARRAY[buttonNr].addActionListener(this);
+
+        }
+
         // Add TEXT field to TITLE panel
         TITLE_PANEL.add(TEXT_FIELD);
 
@@ -52,9 +63,6 @@ public class TicTacToeGame implements ActionListener {
         GAME_FIELD.add(TITLE_PANEL, NORTH);
         GAME_FIELD.add(BUTTONS_PANEL);
 
-        // Init button panel (container for buttons)
-        BUTTONS_PANEL.setLayout(new GridLayout(3,3));
-        BUTTONS_PANEL.setBackground(new Color(255,255,255));
     }
     @Override
     public void actionPerformed(ActionEvent actionEvent) {

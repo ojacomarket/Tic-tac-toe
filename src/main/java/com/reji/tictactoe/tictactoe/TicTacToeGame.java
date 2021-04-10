@@ -19,6 +19,7 @@ public class TicTacToeGame implements ActionListener {
     private final JButton[] BUTTONS_ARRAY = new JButton[9];
     private final Random generator = new Random();
     private boolean isPlayerOneTurn;
+    private final Consumer<JButton> initButtons = BUTTONS_PANEL::add;
     public TicTacToeGame () {
         initGameField();
     }
@@ -48,12 +49,11 @@ public class TicTacToeGame implements ActionListener {
         BUTTONS_PANEL.setBackground(new Color(255,255,255));
 
         for(int buttonNr = 0; buttonNr < 9; buttonNr++) {
-            BUTTONS_ARRAY[buttonNr] = new JButton();
-            BUTTONS_PANEL.add(BUTTONS_ARRAY[buttonNr]);
-            BUTTONS_ARRAY[buttonNr].setFont(new Font("MV Boli", BOLD, 120));
-            BUTTONS_ARRAY[buttonNr].setFocusable(false);
-            BUTTONS_ARRAY[buttonNr].addActionListener(this);
-
+            initButtons
+                    .andThen(button -> button.addActionListener(this))
+                    .andThen(button -> button.setFocusable(false))
+                    .andThen(button -> button.setFont(new Font("MV Boli", BOLD, 40)))
+                    .accept(BUTTONS_ARRAY[buttonNr] = new JButton());
         }
 
         // Add TEXT field to TITLE panel

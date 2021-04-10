@@ -53,6 +53,7 @@ public class TicTacToeGame implements ActionListener {
 
         // Init button panel (container for buttons)
         BUTTONS_PANEL.setLayout(new GridLayout(3,3));
+        BUTTONS_PANEL.setBackground(new Color(255,255,255));
     }
     @Override
     public void actionPerformed(ActionEvent actionEvent) {

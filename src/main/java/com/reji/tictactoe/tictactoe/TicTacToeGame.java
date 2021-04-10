@@ -19,6 +19,9 @@ public class TicTacToeGame implements ActionListener {
     public TicTacToeGame () {
 
     }
+    private void initGameField () {
+
+    }
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
 

@@ -37,6 +37,7 @@ public class TicTacToeGame implements ActionListener {
         TEXT_FIELD.setFont(new Font("Roboto", BOLD, 70));
         TEXT_FIELD.setHorizontalAlignment(CENTER);
         TEXT_FIELD.setText("Tic Tac Toe");
+        TEXT_FIELD.setOpaque(true);
 
 
 

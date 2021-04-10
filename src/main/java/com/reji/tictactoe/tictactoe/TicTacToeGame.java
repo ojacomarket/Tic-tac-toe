@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 public class TicTacToeGame implements ActionListener {
     private final JFrame GAME_FIELD = new JFrame();
     private final JPanel GAME_PANEL = new JPanel();
+    private final JPanel BUTTONS = new JPanel();
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
 

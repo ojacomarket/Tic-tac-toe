@@ -80,6 +80,13 @@ public class TicTacToeGame implements ActionListener {
                         isPlayerOneTurn = false;
                         TEXT_FIELD.setText("O turn");
                     }
+                } else {
+                    if (button.getText().equals("")) {
+                        button.setForeground(new Color(0, 0, 255));
+                        button.setText("O");
+                        isPlayerOneTurn = true;
+                        TEXT_FIELD.setText("X turn");
+                    }
                 }
 
 

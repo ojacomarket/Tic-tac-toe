@@ -20,6 +20,7 @@ public class TicTacToeGame implements ActionListener {
 
     }
     private void initGameField () {
+        GAME_FIELD.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     }
     @Override

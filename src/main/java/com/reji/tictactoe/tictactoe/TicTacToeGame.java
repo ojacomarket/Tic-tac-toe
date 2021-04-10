@@ -52,14 +52,6 @@ public class TicTacToeGame implements ActionListener {
         BUTTONS_PANEL.setBackground(new Color(0, 0, 0));
 
         initButtons();
-        /*for(int buttonNr = 0; buttonNr < 9; buttonNr++) {
-            BUTTONS_ARRAY[buttonNr] = new JButton();
-            BUTTONS_PANEL.add(BUTTONS_ARRAY[buttonNr]);
-            BUTTONS_ARRAY[buttonNr].setFont(new Font("MV Boli", BOLD, 120));
-            BUTTONS_ARRAY[buttonNr].setFocusable(false);
-            BUTTONS_ARRAY[buttonNr].addActionListener(this);
-
-        }*/
 
         // Add TEXT field to TITLE panel
         TITLE_PANEL.add(TEXT_FIELD);
@@ -88,11 +80,9 @@ public class TicTacToeGame implements ActionListener {
                         button.setText("O");
                         isPlayerOneTurn = true;
                         TEXT_FIELD.setText("X turn");
-                        winningCombos();
+                        //winningCombos();
                     }
                 }
-
-
             }
         }
     }
@@ -121,148 +111,20 @@ public class TicTacToeGame implements ActionListener {
             TEXT_FIELD.setText("O turn");
         }
     }
-    public void winningCombos () {
-        int [] argss = XwinningCombos.xwins(BUTTONS_ARRAY);
+
+    public void winningCombos() {
+        int[] argss = XwinningCombos.xwins(BUTTONS_ARRAY);
         if (!Arrays.equals(argss, new int[]{0, 0, 0})) {
             winsOnX(argss);
-        }
-        else
-            return;
-        /*// X--X--X
-        // *--*--*
-        // *--*--*
-        if (BUTTONS_ARRAY[0].getText().equals("X")
-                && BUTTONS_ARRAY[1].getText().equals("X")
-                && BUTTONS_ARRAY[2].getText().equals("X")) {
-            winsOnX(0,1,2);
-        }
-        // X--*--*
-        // X--*--*
-        // X--*--*
-        if (BUTTONS_ARRAY[0].getText().equals("X")
-                && BUTTONS_ARRAY[3].getText().equals("X")
-                && BUTTONS_ARRAY[6].getText().equals("X")) {
-            winsOnX(0,3,6);
-        }
-        // X--*--*
-        // *--X--*
-        // *--*--X
-
-        if (BUTTONS_ARRAY[0].getText().equals("X")
-                && BUTTONS_ARRAY[4].getText().equals("X")
-                && BUTTONS_ARRAY[8].getText().equals("X")) {
-            winsOnX(0,4,8);
-        }
-        // *--X--*
-        // *--X--*
-        // *--X--*
-        if (BUTTONS_ARRAY[1].getText().equals("X")
-                && BUTTONS_ARRAY[4].getText().equals("X")
-                && BUTTONS_ARRAY[7].getText().equals("X")) {
-            winsOnX(1,4,7);
-        }
-        // *--*--X
-        // *--*--X
-        // *--*--X
-        if (BUTTONS_ARRAY[2].getText().equals("X")
-                && BUTTONS_ARRAY[5].getText().equals("X")
-                && BUTTONS_ARRAY[8].getText().equals("X")) {
-            winsOnX(2,5,8);
-        }
-        // *--*--X
-        // *--X--*
-        // X--*--*
-        if (BUTTONS_ARRAY[2].getText().equals("X")
-                && BUTTONS_ARRAY[4].getText().equals("X")
-                && BUTTONS_ARRAY[6].getText().equals("X")) {
-            winsOnX(2,4,6);
-        }
-        // *--*--*
-        // X--X--X
-        // *--*--*
-        if (BUTTONS_ARRAY[3].getText().equals("X")
-                && BUTTONS_ARRAY[4].getText().equals("X")
-                && BUTTONS_ARRAY[5].getText().equals("X")) {
-            winsOnX(3,4,5);
-        }
-        // *--*--*
-        // *--*--*
-        // X--X--X
-        if (BUTTONS_ARRAY[6].getText().equals("X")
-                && BUTTONS_ARRAY[7].getText().equals("X")
-                && BUTTONS_ARRAY[8].getText().equals("X")) {
-            winsOnX(3,6,8);
-        }*/
-
-        /////////////////////////////////////////////////////
-
-        // Y--Y--Y
-        // *--*--*
-        // *--*--*
-        if (BUTTONS_ARRAY[0].getText().equals("Y")
-                && BUTTONS_ARRAY[1].getText().equals("Y")
-                && BUTTONS_ARRAY[2].getText().equals("Y")) {
-            winsOnO(0,1,2);
-        }
-        // Y--*--*
-        // Y--*--*
-        // Y--*--*
-        if (BUTTONS_ARRAY[0].getText().equals("Y")
-                && BUTTONS_ARRAY[3].getText().equals("Y")
-                && BUTTONS_ARRAY[6].getText().equals("Y")) {
-            winsOnO(0,3,6);
-        }
-        // Y--*--*
-        // *--Y--*
-        // *--*--Y
-
-        if (BUTTONS_ARRAY[0].getText().equals("Y")
-                && BUTTONS_ARRAY[4].getText().equals("Y")
-                && BUTTONS_ARRAY[8].getText().equals("Y")) {
-            winsOnO(0,4,8);
-        }
-        // *--Y--*
-        // *--Y--*
-        // *--Y--*
-        if (BUTTONS_ARRAY[1].getText().equals("Y")
-                && BUTTONS_ARRAY[4].getText().equals("Y")
-                && BUTTONS_ARRAY[7].getText().equals("Y")) {
-            winsOnO(1,4,7);
-        }
-        // *--*--Y
-        // *--*--Y
-        // *--*--Y
-        if (BUTTONS_ARRAY[2].getText().equals("Y")
-                && BUTTONS_ARRAY[5].getText().equals("Y")
-                && BUTTONS_ARRAY[8].getText().equals("Y")) {
-            winsOnO(2,5,8);
-        }
-        // *--*--Y
-        // *--Y--*
-        // Y--*--*
-        if (BUTTONS_ARRAY[2].getText().equals("Y")
-                && BUTTONS_ARRAY[4].getText().equals("Y")
-                && BUTTONS_ARRAY[6].getText().equals("Y")) {
-            winsOnO(2,4,6);
-        }
-        // *--*--*
-        // Y--Y--Y
-        // *--*--*
-        if (BUTTONS_ARRAY[3].getText().equals("Y")
-                && BUTTONS_ARRAY[4].getText().equals("Y")
-                && BUTTONS_ARRAY[5].getText().equals("Y")) {
-            winsOnO(3,4,5);
-        }
-        // *--*--*
-        // *--*--*
-        // Y--Y--Y
-        if (BUTTONS_ARRAY[6].getText().equals("Y")
-                && BUTTONS_ARRAY[7].getText().equals("Y")
-                && BUTTONS_ARRAY[8].getText().equals("Y")) {
-            winsOnO(3,6,8);
+        } else {
+            int[] argss2 = YwinningCombos.xwins(BUTTONS_ARRAY);
+            if (!Arrays.equals(argss2, new int[]{0, 0, 0})) {
+                winsOnO(argss2);
+            }
         }
     }
-    public void winsOnX (int[] ints) {
+
+    public void winsOnX(int[] ints) {
         for (int i = 0; i < ints.length; i++) {
             BUTTONS_ARRAY[ints[i]].setBackground(Color.GREEN);
         }
@@ -273,15 +135,14 @@ public class TicTacToeGame implements ActionListener {
         TEXT_FIELD.setText("X won!");
     }
 
-    public void winsOnO(int button1, int button2, int button3) {
-        BUTTONS_ARRAY[button1].setBackground(Color.RED);
-        BUTTONS_ARRAY[button2].setBackground(Color.RED);
-        BUTTONS_ARRAY[button3].setBackground(Color.RED);
+    public void winsOnO(int[] ints) {
+        for (int i = 0; i < ints.length; i++) {
+            BUTTONS_ARRAY[ints[i]].setBackground(Color.RED);
+        }
 
         for (JButton button : BUTTONS_ARRAY) {
             button.setEnabled(false);
         }
-        TEXT_FIELD.setText("O won!");
-
+        TEXT_FIELD.setText("Y won!");
     }
 }

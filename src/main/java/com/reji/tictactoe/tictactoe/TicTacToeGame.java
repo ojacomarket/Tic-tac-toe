@@ -1,6 +1,7 @@
 package com.reji.tictactoe.tictactoe;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public class TicTacToeGame implements ActionListener {
     private void initGameField () {
         GAME_FIELD.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         GAME_FIELD.setSize(800,800);
+        GAME_FIELD.getContentPane().setBackground(new Color(153,255,153));
 
     }
     @Override

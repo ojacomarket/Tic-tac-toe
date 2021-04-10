@@ -50,6 +50,9 @@ public class TicTacToeGame implements ActionListener {
 
         // Add TITLE panel to GAME FIELD and stick to the top of view
         GAME_FIELD.add(TITLE_PANEL, NORTH);
+
+        // Init button panel (container for buttons)
+        BUTTONS_PANEL.setLayout(new GridLayout(3,3));
     }
     @Override
     public void actionPerformed(ActionEvent actionEvent) {

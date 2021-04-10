@@ -74,7 +74,9 @@ public class TicTacToeGame implements ActionListener {
         for (int buttonNr = 0; buttonNr < BUTTONS_ARRAY.length; buttonNr++) {
             if (actionEvent.getSource() == BUTTONS_ARRAY[buttonNr]) {
                 if(isPlayerOneTurn) {
+                    if(BUTTONS_ARRAY[buttonNr].getText().equals("")) {
 
+                    }
                 }
 
             }

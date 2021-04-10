@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Random;
 
 import static java.awt.Font.BOLD;
-import static java.awt.Label.CENTER;
+import static javax.swing.JLabel.CENTER;
 
 public class TicTacToeGame implements ActionListener {
     private final JFrame GAME_FIELD = new JFrame();
@@ -21,12 +21,12 @@ public class TicTacToeGame implements ActionListener {
     private boolean isPlayerOneTurn;
 
     public TicTacToeGame () {
-
+        initGameField();
     }
     private void initGameField () {
         // Init Game Field main window
         GAME_FIELD.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        GAME_FIELD.setSize(800,800);
+        GAME_FIELD.setSize(400,400);
         GAME_FIELD.getContentPane().setBackground(new Color(153,255,153));
         GAME_FIELD.setLayout(new BorderLayout());
         GAME_FIELD.setVisible(true);
@@ -34,7 +34,7 @@ public class TicTacToeGame implements ActionListener {
         // Init Text Field within Game Field window
         TEXT_FIELD.setBackground(new Color (51,255,51));
         TEXT_FIELD.setForeground(new Color(47,49,63));
-        TEXT_FIELD.setFont(new Font("Roboto", BOLD, 70));
+        TEXT_FIELD.setFont(new Font("Roboto", BOLD, 40));
         TEXT_FIELD.setHorizontalAlignment(CENTER);
         TEXT_FIELD.setText("Tic Tac Toe");
         TEXT_FIELD.setOpaque(true);

@@ -42,6 +42,9 @@ public class TicTacToeGame implements ActionListener {
         // Init title component of Game Field
         TITLE_PANEL.setLayout(new BorderLayout());
         TITLE_PANEL.setBounds(0,0,GAME_FIELD.getWidth(),100);
+
+        // Add TEXT field to TITLE panel
+        TITLE_PANEL.add(TEXT_FIELD);
     }
     @Override
     public void actionPerformed(ActionEvent actionEvent) {

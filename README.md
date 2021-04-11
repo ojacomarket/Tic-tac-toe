@@ -22,4 +22,4 @@
 - Once it is downloaded, open your terminal 
 - Navigate to the file's location
 - Type: **java -jar tictactoe-0.0.1-SNAPSHOT.jar**
-- Play ::octocat::
+- Play :octocat:

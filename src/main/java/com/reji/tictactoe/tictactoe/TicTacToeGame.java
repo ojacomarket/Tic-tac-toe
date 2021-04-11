@@ -4,68 +4,75 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
 import java.util.Random;
-import java.util.function.Consumer;
 
 import static java.awt.BorderLayout.NORTH;
 import static java.awt.Font.BOLD;
 import static javax.swing.JLabel.CENTER;
 
-public class TicTacToeGame implements ActionListener {
-    private final JFrame GAME_FIELD = new JFrame();
+public class TicTacToeGame extends Thread implements
+        ActionListener,
+        TicTacToeButtons,
+        TicTacToeLoadingEffect,
+        TicTacToeCombinations,
+        TicTacToeWinner {
+
+    private final JFrame GAME_FIELD = new JFrame("Tic Tac Toe");
     private final JPanel TITLE_PANEL = new JPanel();
     private final JPanel BUTTONS_PANEL = new JPanel();
     private final JLabel TEXT_FIELD = new JLabel();
     private final JButton[] BUTTONS_ARRAY = new JButton[9];
     private final Random generator = new Random();
-    private boolean isPlayerOneTurn;
-    private final Consumer<JButton> initButtons = BUTTONS_PANEL::add;
-    private final Dimension monitor = Toolkit.getDefaultToolkit().getScreenSize();
+    private Boolean isPlayerOneTurn = null;
 
     public TicTacToeGame() {
+
         initGameField();
     }
 
     private void initGameField() {
-        // Init Game Field main window
+
+        // Init main window
         GAME_FIELD.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         GAME_FIELD.setSize(400, 400);
         GAME_FIELD.getContentPane().setBackground(new Color(153, 255, 153));
         GAME_FIELD.setLayout(new BorderLayout());
         GAME_FIELD.setResizable(false);
         GAME_FIELD.setVisible(true);
-        GAME_FIELD.setLocation(monitor.width/2-GAME_FIELD.getSize().width/2, monitor.height/2-GAME_FIELD.getSize().height/2);
+        GAME_FIELD.setLocationRelativeTo(null);
 
-        // Init Text Field within Game Field window
-        TEXT_FIELD.setBackground(new Color(51, 255, 51));
+        // Add loading effect
+        loading(GAME_FIELD);
+
+        // Init text styles
+        TEXT_FIELD.setBackground(new Color(204, 255, 255));
         TEXT_FIELD.setForeground(new Color(47, 49, 63));
         TEXT_FIELD.setFont(new Font("Roboto", BOLD, 40));
         TEXT_FIELD.setHorizontalAlignment(CENTER);
-        TEXT_FIELD.setText("Tic Tac Toe");
         TEXT_FIELD.setOpaque(true);
 
-        // Init title component of Game Field
+        // Init component, that will display who's turn and who has won
         TITLE_PANEL.setLayout(new BorderLayout());
         TITLE_PANEL.setBounds(0, 0, GAME_FIELD.getWidth(), 100);
 
-        // Init button panel (container for buttons)
-        BUTTONS_PANEL.setLayout(new GridLayout(3, 3));
-        BUTTONS_PANEL.setBackground(new Color(0, 0, 0));
+        // Init buttons container
+        BUTTONS_PANEL.setLayout(new GridLayout(3, 3, 0, 0));
+        build(BUTTONS_PANEL::add, this, BUTTONS_ARRAY);
 
-        initButtons();
-
-        // Add TEXT field to TITLE panel
+        // Add text styles to component
         TITLE_PANEL.add(TEXT_FIELD);
 
-        // Add TITLE panel to GAME FIELD and stick to the top of view
+        // Add remain component into main window
         GAME_FIELD.add(TITLE_PANEL, NORTH);
         GAME_FIELD.add(BUTTONS_PANEL);
-        whosTurn();
+
+        //Print who's turn
+        isPlayerOneTurn = whosTurn(generator, TEXT_FIELD);
     }
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
+
         for (JButton button : BUTTONS_ARRAY) {
             if (actionEvent.getSource() == button) {
                 if (isPlayerOneTurn) {
@@ -74,7 +81,7 @@ public class TicTacToeGame implements ActionListener {
                         button.setText("X");
                         isPlayerOneTurn = false;
                         TEXT_FIELD.setText("O turn");
-                        winningCombos();
+                        winningCombos(TEXT_FIELD, BUTTONS_ARRAY, generator);
                     }
                 } else {
                     if (button.getText().equals("")) {
@@ -82,67 +89,10 @@ public class TicTacToeGame implements ActionListener {
                         button.setText("O");
                         isPlayerOneTurn = true;
                         TEXT_FIELD.setText("X turn");
-                        winningCombos();
+                        winningCombos(TEXT_FIELD, BUTTONS_ARRAY, generator);
                     }
                 }
             }
         }
-    }
-
-    public void initButtons() {
-        for (int buttonNr = 0; buttonNr < 9; buttonNr++) {
-            initButtons
-                    .andThen(button -> button.addActionListener(this))
-                    .andThen(button -> button.setFocusable(false))
-                    .andThen(button -> button.setFont(new Font("MV Boli", BOLD, 40)))
-                    .accept(BUTTONS_ARRAY[buttonNr] = new JButton());
-        }
-    }
-
-    public void whosTurn() {
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException sysInterrupt) {
-            sysInterrupt.printStackTrace();
-        }
-        if (generator.nextInt(2) == 1) {
-            isPlayerOneTurn = true;
-            TEXT_FIELD.setText("X turn");
-        } else {
-            isPlayerOneTurn = false;
-            TEXT_FIELD.setText("O turn");
-        }
-    }
-
-    public void winningCombos() {
-        if (!Arrays.equals(XwinningCombos.xwins(BUTTONS_ARRAY), new int[]{0, 0, 0})) {
-            winsOnX(XwinningCombos.xwins(BUTTONS_ARRAY));
-        } else {
-            if (!Arrays.equals(YwinningCombos.ywins(BUTTONS_ARRAY), new int[]{0, 0, 0})) {
-                winsOnO(YwinningCombos.ywins(BUTTONS_ARRAY));
-            }
-        }
-    }
-
-    public void winsOnX(int[] ints) {
-        for (int i = 0; i < ints.length; i++) {
-            BUTTONS_ARRAY[ints[i]].setBackground(Color.GREEN);
-        }
-
-        for (JButton button : BUTTONS_ARRAY) {
-            button.setEnabled(false);
-        }
-        TEXT_FIELD.setText("X won!");
-    }
-
-    public void winsOnO(int[] ints) {
-        for (int i = 0; i < ints.length; i++) {
-            BUTTONS_ARRAY[ints[i]].setBackground(Color.RED);
-        }
-
-        for (JButton button : BUTTONS_ARRAY) {
-            button.setEnabled(false);
-        }
-        TEXT_FIELD.setText("O won!");
     }
 }
